@@ -1,5 +1,6 @@
 package com.blitzscale.inventory_service.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class FlashSaleItem {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sale_id", nullable = false)
+    @JsonIgnore
     private FlashSale flashSale;
 
     @ManyToOne(fetch = FetchType.LAZY)
