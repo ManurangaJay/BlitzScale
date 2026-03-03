@@ -8,10 +8,11 @@
     <artifactId>blitzscale-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging> <modules>
-<!--        <module>discovery-server</module>-->
+        <module>discovery-server</module>
 <!--        <module>api-gateway</module>-->
         <module>inventory-service</module>
         <module>order-service</module>
+        <module>payment-service</module>
         <module>common</module>
     </modules>
 
