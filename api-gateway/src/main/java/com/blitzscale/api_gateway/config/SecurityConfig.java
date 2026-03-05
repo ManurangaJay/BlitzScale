@@ -1,4 +1,4 @@
-package com.blitzscale.api_gateway;
+package com.blitzscale.api_gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

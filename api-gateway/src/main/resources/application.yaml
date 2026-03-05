@@ -5,6 +5,11 @@ spring:
   application:
     name: api-gateway
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
   cloud:
     gateway:
       server:
@@ -14,6 +19,14 @@ spring:
               uri: lb://INVENTORY-SERVICE
               predicates:
                 - Path=/api/v1/flash-sales/**, /api/v1/products/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 10
+                    redis-rate-limiter.burstCapacity: 20
+                    redis-rate-limiter.requestTokens: 1
+                    key-resolver: "#{@userKeyResolver}"
+
             - id: payment-service
               uri: lb://PAYMENT-SERVICE
               predicates:
