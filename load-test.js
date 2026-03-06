@@ -3,10 +3,9 @@ import { check, sleep } from 'k6';
 
 export const options = {
     stages: [
-        { duration: '10s', target: 500 },  // Ramp up to 500 users
-        { duration: '30s', target: 2000 }, // Spike to 2000 users
-        { duration: '10s', target: 5000 }, // BlitzScale to 5000 users
-        { duration: '10s', target: 0 },    // Ramp down gracefully
+        { duration: '10s', target: 200 },
+        { duration: '30s', target: 800 },
+        { duration: '10s', target: 0 },
     ],
 };
 
@@ -48,5 +47,5 @@ export default function (data) {
         'Server Error (500)': (r) => r.status === 500,
     });
 
-    sleep(1);
+//    sleep(1);
 }

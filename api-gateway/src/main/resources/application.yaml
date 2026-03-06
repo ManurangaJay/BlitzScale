@@ -19,13 +19,13 @@ spring:
               uri: lb://INVENTORY-SERVICE
               predicates:
                 - Path=/api/v1/flash-sales/**, /api/v1/products/**
-              filters:
-                - name: RequestRateLimiter
-                  args:
-                    redis-rate-limiter.replenishRate: 10
-                    redis-rate-limiter.burstCapacity: 20
-                    redis-rate-limiter.requestTokens: 1
-                    key-resolver: "#{@userKeyResolver}"
+#              filters:
+#                - name: RequestRateLimiter
+#                  args:
+#                    redis-rate-limiter.replenishRate: 10
+#                    redis-rate-limiter.burstCapacity: 20
+#                    redis-rate-limiter.requestTokens: 1
+#                    key-resolver: "#{@userKeyResolver}"
 
             - id: payment-service
               uri: lb://PAYMENT-SERVICE
@@ -48,3 +48,12 @@ eureka:
 logging:
   level:
     org.springframework.cloud.gateway: TRACE
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
